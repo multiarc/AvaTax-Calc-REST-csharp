@@ -1,0 +1,5 @@
+c:\users\anya.stettler\documents\visual studio 2010\Projects\AvaTaxCalcREST\AvaTaxCalcREST\bin\Debug\AvaTaxCalcREST.exe
+c:\users\anya.stettler\documents\visual studio 2010\Projects\AvaTaxCalcREST\AvaTaxCalcREST\bin\Debug\AvaTaxCalcREST.pdb
+c:\users\anya.stettler\documents\visual studio 2010\Projects\AvaTaxCalcREST\AvaTaxCalcREST\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\anya.stettler\documents\visual studio 2010\Projects\AvaTaxCalcREST\AvaTaxCalcREST\obj\x86\Debug\AvaTaxCalcREST.exe
+c:\users\anya.stettler\documents\visual studio 2010\Projects\AvaTaxCalcREST\AvaTaxCalcREST\obj\x86\Debug\AvaTaxCalcREST.pdb
