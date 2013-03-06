@@ -19,7 +19,7 @@ namespace AvaTaxCalcREST
 
         static void Main()
         {
-            string DocPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + "\\INV0001.txt";
+            string DocPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\INV0001.txt";
             GetTaxRequest calcreq = DocumentLoader.Load(DocPath); //Loads document from file to generate request
 
             //Run address validation test (address/validate)
