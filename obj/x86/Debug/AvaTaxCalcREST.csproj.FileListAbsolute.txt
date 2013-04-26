@@ -3,3 +3,8 @@ c:\users\anya.stettler\documents\visual studio 2010\Projects\AvaTaxCalcREST\AvaT
 c:\users\anya.stettler\documents\visual studio 2010\Projects\AvaTaxCalcREST\AvaTaxCalcREST\obj\x86\Debug\ResolveAssemblyReference.cache
 c:\users\anya.stettler\documents\visual studio 2010\Projects\AvaTaxCalcREST\AvaTaxCalcREST\obj\x86\Debug\AvaTaxCalcREST.exe
 c:\users\anya.stettler\documents\visual studio 2010\Projects\AvaTaxCalcREST\AvaTaxCalcREST\obj\x86\Debug\AvaTaxCalcREST.pdb
+C:\Users\sean.rust\Documents\GitHub\AvaTax-Calc-REST-csharp\obj\x86\Debug\AvaTaxCalcREST.exe
+C:\Users\sean.rust\Documents\GitHub\AvaTax-Calc-REST-csharp\obj\x86\Debug\AvaTaxCalcREST.pdb
+C:\Users\sean.rust\Documents\GitHub\AvaTax-Calc-REST-csharp\bin\Debug\AvaTaxCalcREST.exe
+C:\Users\sean.rust\Documents\GitHub\AvaTax-Calc-REST-csharp\bin\Debug\AvaTaxCalcREST.pdb
+C:\Users\sean.rust\Documents\GitHub\AvaTax-Calc-REST-csharp\obj\x86\Debug\ResolveAssemblyReference.cache

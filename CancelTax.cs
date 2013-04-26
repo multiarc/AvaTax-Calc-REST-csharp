@@ -42,12 +42,12 @@ namespace AvaTaxCalcREST
     {
 
         //This calls CancelTax to void a transaction specified in taxreq
-        public static CancelTaxResult Cancel(GetTaxRequest taxreq, string AcctNum, string LicKey, string CompanyCode, string webaddr)
+        public static CancelTaxResult Cancel(GetTaxRequest taxReq, string acctNum, string licKey, string companyCode, string webAddr)
         {
             CancelTaxRequest req = new CancelTaxRequest();
-            req.CompanyCode = taxreq.CompanyCode;
-            req.DocCode = taxreq.DocCode;
-            req.DocType = taxreq.DocType;
+            req.CompanyCode = taxReq.CompanyCode;
+            req.DocCode = taxReq.DocCode;
+            req.DocType = taxReq.DocType;
             req.CancelCode = CancelCode.DocVoided;
 
             //Convert the request to XML
@@ -63,9 +63,9 @@ namespace AvaTaxCalcREST
             //doc.Save(@"cancel_tax_request.xml");
 
             //Call the service
-            Uri address = new Uri(webaddr + "tax/cancel");
+            Uri address = new Uri(webAddr + "tax/cancel");
             HttpWebRequest request = WebRequest.Create(address) as HttpWebRequest;
-            request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(AcctNum + ":" + LicKey)));
+            request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(acctNum + ":" + licKey)));
             request.Method = "POST";
             request.ContentType = "text/xml";
             request.ContentLength = sb.Length;

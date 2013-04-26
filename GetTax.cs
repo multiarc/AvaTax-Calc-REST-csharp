@@ -149,7 +149,7 @@ namespace AvaTaxCalcREST
     public class GetTax
     {
         //This actually calls the service to perform the tax calculation, and returns the calculation result.
-        public static GetTaxResult Get(GetTaxRequest req, string AcctNum, string LicKey, string CompanyCode, string webaddr)
+        public static GetTaxResult Get(GetTaxRequest req, string acctNum, string licKey, string companyCode, string webAddr)
         {
 
 
@@ -166,9 +166,9 @@ namespace AvaTaxCalcREST
             //doc.Save(@"get_tax_request.xml");
 
             //Call the service
-            Uri address = new Uri(webaddr + "tax/get");
+            Uri address = new Uri(webAddr + "tax/get");
             HttpWebRequest request = WebRequest.Create(address) as HttpWebRequest;
-            request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(AcctNum + ":" + LicKey)));
+            request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(acctNum + ":" + licKey)));
             request.Method = "POST";
             request.ContentType = "text/xml";
             request.ContentLength = sb.Length;
@@ -186,12 +186,7 @@ namespace AvaTaxCalcREST
                 Console.WriteLine(ex.Message + " on gettax object");
             }
             return result;
-        }
-        
+        }       
     }
-    
-
-    
-
 }
 
