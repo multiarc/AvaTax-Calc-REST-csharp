@@ -94,7 +94,7 @@ namespace AvaTaxCalcREST
         public decimal Tax { get; set; }
         public decimal Discount { get; set; }
         public decimal TaxCalculated { get; set; }
-        public bool Exemption { get; set; }
+        public decimal Exemption { get; set; }
         public TaxDetail[] TaxDetails { get; set; }
     }
     [Serializable]
