@@ -78,9 +78,10 @@ namespace AvaTaxCalcREST
                 XmlSerializer r = new XmlSerializer(result.GetType());
                 result = (CancelTaxResponse)r.Deserialize(response.GetResponseStream());
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
-                Console.WriteLine(ex.Message + " on canceltax object");
+                XmlSerializer r = new XmlSerializer(result.GetType());
+                result = (CancelTaxResponse)r.Deserialize(((HttpWebResponse)ex.Response).GetResponseStream());
             }
             return result.CancelTaxResult;
         }

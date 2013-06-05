@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.Web;
 using System.Net;
+using System.IO;
 
 namespace AvaTaxCalcREST
 {
@@ -77,11 +78,11 @@ namespace AvaTaxCalcREST
                 result = (ValidateResult)r.Deserialize(response.GetResponseStream());
                 addr = result.Address; //If the address was validated, take the validated address.
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
-                Console.WriteLine(ex.Message + " on address object");
+                XmlSerializer r = new XmlSerializer(result.GetType());
+                result = (ValidateResult)r.Deserialize(((HttpWebResponse)ex.Response).GetResponseStream());
             }
-            Console.WriteLine(result.ResultCode.ToString());
             return result;
 
         }
