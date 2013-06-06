@@ -12,8 +12,8 @@ namespace AvaTaxCalcREST
 {
     class Program
     {
-        public const string ACCTNUM = ""; //TODO: this should be your Avatax Account Number e.g. 1100012345
-        public const string KEY = ""; //TODO: this should be the license key for the account above, e.g. 23CF4C53939C9725
+        public const string ACCTNUM = "account.admin.1100014690"; //TODO: this should be your Avatax Account Number e.g. 1100012345
+        public const string KEY = "avalar"; //TODO: this should be the license key for the account above, e.g. 23CF4C53939C9725
         public const string COMPANYCODE = ""; //this should be the company code you set on your Admin Console, e.g. TEST
         public const string WEBADDR = "https://development.avalara.net/1.0/";
 

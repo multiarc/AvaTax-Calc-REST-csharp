@@ -53,6 +53,7 @@ namespace AvaTaxCalcREST
     {
         public static ValidateResult Validate(Address addr, string AcctNum, string LicKey, string CompanyCode, string webaddr)
         {
+
             //Convert input address data to query string
             string querystring = "";
             if (addr.Line1 != null) { querystring = querystring + "Line1=" + addr.Line1.Replace(" ", "+"); }

@@ -26,6 +26,8 @@ namespace AvaTaxCalcREST
     public class CancelTaxResponse
     {
         public CancelTaxResult CancelTaxResult { get; set; }
+        public SeverityLevel ResultCode { get; set; }
+        public Message[] Messages { get; set; }
     }
 
     [Serializable]
@@ -71,19 +73,25 @@ namespace AvaTaxCalcREST
             request.ContentLength = sb.Length;
             Stream newStream = request.GetRequestStream();
             newStream.Write(ASCIIEncoding.ASCII.GetBytes(sb.ToString()), 0, sb.Length);
-            CancelTaxResponse result = new CancelTaxResponse();
+            CancelTaxResponse cancelResponse = new CancelTaxResponse();
             try
             {
                 WebResponse response = request.GetResponse();
-                XmlSerializer r = new XmlSerializer(result.GetType());
-                result = (CancelTaxResponse)r.Deserialize(response.GetResponseStream());
+                XmlSerializer r = new XmlSerializer(cancelResponse.GetType());
+                cancelResponse = (CancelTaxResponse)r.Deserialize(response.GetResponseStream());
             }
             catch (WebException ex)
             {
-                XmlSerializer r = new XmlSerializer(result.GetType());
-                result = (CancelTaxResponse)r.Deserialize(((HttpWebResponse)ex.Response).GetResponseStream());
+                XmlSerializer r = new XmlSerializer(cancelResponse.GetType());
+                cancelResponse = (CancelTaxResponse)r.Deserialize(((HttpWebResponse)ex.Response).GetResponseStream());
+                if(cancelResponse.ResultCode.Equals(SeverityLevel.Error)) //If the error is returned at the cancelResponse level, translate it to the cancelResult.
+                {
+                    cancelResponse.CancelTaxResult = new CancelTaxResult();
+                    cancelResponse.CancelTaxResult.ResultCode = cancelResponse.ResultCode;
+                    cancelResponse.CancelTaxResult.Messages = cancelResponse.Messages;
+                }
             }
-            return result.CancelTaxResult;
+            return cancelResponse.CancelTaxResult;
         }
     
     }
