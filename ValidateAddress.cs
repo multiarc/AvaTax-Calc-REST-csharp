@@ -81,8 +81,28 @@ namespace AvaTaxCalcREST
             }
             catch (WebException ex)
             {
-                XmlSerializer r = new XmlSerializer(result.GetType());
-                result = (ValidateResult)r.Deserialize(((HttpWebResponse)ex.Response).GetResponseStream());
+                StreamReader reader = new StreamReader(((HttpWebResponse)ex.Response).GetResponseStream());
+                String responseString = reader.ReadToEnd();
+                if (responseString.StartsWith("{")  || responseString.StartsWith("[")) //The service returns some error messages in JSON for authentication/unhandled errors.
+                {
+                    result = new ValidateResult();
+                    result.ResultCode = SeverityLevel.Error;
+                    Message msg = new Message();
+                    msg.Severity = result.ResultCode;
+                    msg.Summary = "The request was unable to be successfully serviced, please try again or contact Customer Service.";
+                    msg.Source = "Avalara.Web.REST";
+                    if (!((HttpWebResponse)ex.Response).StatusCode.Equals(HttpStatusCode.InternalServerError))
+                    {
+                        msg.Summary = "The user or account could not be authenticated.";
+                        msg.Source = "Avalara.Web.Authorization"; 
+                    }
+                    result.Messages = new Message[1] {msg};
+                }
+                else
+                {
+                    XmlSerializer r = new XmlSerializer(result.GetType());
+                    result = (ValidateResult)r.Deserialize(((HttpWebResponse)ex.Response).GetResponseStream());
+                }
             }
             return result;
 
