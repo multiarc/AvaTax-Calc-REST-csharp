@@ -53,7 +53,6 @@ namespace AvaTaxCalcREST
     {
         public static ValidateResult Validate(Address addr, string AcctNum, string LicKey, string CompanyCode, string webaddr)
         {
-
             //Convert input address data to query string
             string querystring = "";
             if (addr.Line1 != null) { querystring = querystring + "Line1=" + addr.Line1.Replace(" ", "+"); }
@@ -81,7 +80,8 @@ namespace AvaTaxCalcREST
             }
             catch (WebException ex)
             {
-                StreamReader reader = new StreamReader(((HttpWebResponse)ex.Response).GetResponseStream());
+                Stream responseStream = ((HttpWebResponse)ex.Response).GetResponseStream();
+                StreamReader reader = new StreamReader(responseStream);
                 String responseString = reader.ReadToEnd();
                 if (responseString.StartsWith("{")  || responseString.StartsWith("[")) //The service returns some error messages in JSON for authentication/unhandled errors.
                 {
@@ -101,7 +101,9 @@ namespace AvaTaxCalcREST
                 else
                 {
                     XmlSerializer r = new XmlSerializer(result.GetType());
-                    result = (ValidateResult)r.Deserialize(((HttpWebResponse)ex.Response).GetResponseStream());
+                    byte[] temp = Encoding.ASCII.GetBytes(responseString);
+                    MemoryStream stream = new MemoryStream(temp);
+                    result = (ValidateResult)r.Deserialize(stream); //Inelegant, but the deserializer only takes streams, and we already read ours out.
                 }
             }
             return result;
