@@ -20,6 +20,7 @@ namespace AvaTaxCalcREST
         public Address[] Addresses { get; set; }
         public Line[] Lines { get; set; }
         //Best Practice for tax calculation
+        public string Client { get; set; }
         public string DocCode { get; set; }
         public DocType DocType {get; set;}
         public string CompanyCode {get; set;}
@@ -29,9 +30,13 @@ namespace AvaTaxCalcREST
         public string CustomerUsageType { get; set; }
         public string ExemptionNo { get; set; }
         public decimal Discount { get; set; }
+        public string BusinessIdentificationNo { get; set; }
+        public TaxOverrideDef TaxOverride { get; set; }
         //Optional
         public string PurchaseOrderNo { get; set; }
         public string PaymentDate { get; set; }
+        public string PosLaneCode { get; set; }
+        public string ReferenceCode { get; set; }
             
     }
 
@@ -52,6 +57,15 @@ namespace AvaTaxCalcREST
         public string Ref1 { get; set; }
         public string Ref2 { get; set; }
 
+    }
+    [Serializable]
+    public class TaxOverrideDef //Allows tax date, amount, or exempt status to be overridden.
+    {
+        public string TaxOverrideType { get; set; }
+        public string TaxAmount { get; set; }
+        public string TaxDate { get; set; }
+        public string Reason { get; set; }
+    
     }
     [Serializable]
     public class GetTaxResult //Result of tax/get verb POST
