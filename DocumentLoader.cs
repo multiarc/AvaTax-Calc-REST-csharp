@@ -20,7 +20,7 @@ namespace AvaTaxCalcREST
             //
 
             // Set the tax document properties - Required unless noted as Optional
-            getTaxRequest.CompanyCode = "SDK";                              // R: Company Code from the accounts Admin Console
+            //getTaxRequest.CompanyCode = "SDK";                              // R: Company Code from the Admin Console. This is passed in to the GetTax.Get function, since it is information typically maintained with the credentials.
             getTaxRequest.Client = "AvaTaxCalcRESTCsharp Sample";
             DateTime docDate = DateTime.Today;
             getTaxRequest.DocCode = "SampleDoc: " + docDate.ToString();  	// R: Invoice or document tracking number - Must be unique

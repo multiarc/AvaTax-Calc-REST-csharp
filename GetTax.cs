@@ -166,6 +166,9 @@ namespace AvaTaxCalcREST
         public static GetTaxResult Get(GetTaxRequest req, string acctNum, string licKey, string companyCode, string webAddr)
         {
 
+            //Company Code is ususally maintiained with the account credentials, so it's passed in to this function even though it's included in the body of the GetTaxRequest.
+            req.CompanyCode = companyCode;
+
 
             //Convert the request to XML
             XmlSerializerNamespaces namesp = new XmlSerializerNamespaces();

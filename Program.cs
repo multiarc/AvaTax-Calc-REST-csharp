@@ -24,7 +24,7 @@ namespace AvaTaxCalcREST
             //Run address validation test (address/validate)
             try
             {
-                ValidateResult addressResult = ValidateAddress.Validate(calcReq.Addresses[0], ACCTNUM, KEY, COMPANYCODE, WEBADDR); //Validates a given address.
+                ValidateResult addressResult = ValidateAddress.Validate(calcReq.Addresses[0], ACCTNUM, KEY, WEBADDR); //Validates a given address.
                 Console.Write("ValidateAddress test result: " + addressResult.ResultCode.ToString()+ " >> ");
                 if (addressResult.ResultCode.Equals(SeverityLevel.Success))
                 {

@@ -51,7 +51,7 @@ namespace AvaTaxCalcREST
     };
     public class ValidateAddress
     {
-        public static ValidateResult Validate(Address addr, string AcctNum, string LicKey, string CompanyCode, string webaddr)
+        public static ValidateResult Validate(Address addr, string AcctNum, string LicKey, string webaddr)
         {
             //Convert input address data to query string
             string querystring = "";
