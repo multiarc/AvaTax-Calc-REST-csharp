@@ -8,3 +8,8 @@ C:\Users\sean.rust\Documents\GitHub\AvaTax-Calc-REST-csharp\obj\x86\Debug\AvaTax
 C:\Users\sean.rust\Documents\GitHub\AvaTax-Calc-REST-csharp\bin\Debug\AvaTaxCalcREST.exe
 C:\Users\sean.rust\Documents\GitHub\AvaTax-Calc-REST-csharp\bin\Debug\AvaTaxCalcREST.pdb
 C:\Users\sean.rust\Documents\GitHub\AvaTax-Calc-REST-csharp\obj\x86\Debug\ResolveAssemblyReference.cache
+\\psf\Home\Documents\GitHub\AvaTax-Calc-REST-csharp\obj\x86\Debug\AvaTaxCalcREST.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\GitHub\AvaTax-Calc-REST-csharp\bin\Debug\AvaTaxCalcREST.exe
+\\psf\Home\Documents\GitHub\AvaTax-Calc-REST-csharp\bin\Debug\AvaTaxCalcREST.pdb
+\\psf\Home\Documents\GitHub\AvaTax-Calc-REST-csharp\obj\x86\Debug\AvaTaxCalcREST.exe
+\\psf\Home\Documents\GitHub\AvaTax-Calc-REST-csharp\obj\x86\Debug\AvaTaxCalcREST.pdb

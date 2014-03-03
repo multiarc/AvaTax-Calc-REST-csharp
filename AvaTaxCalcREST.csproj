@@ -44,12 +44,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CancelTax.cs" />
+    <Compile Include="CancelTaxTest.cs" />
     <Compile Include="DocumentLoader.cs" />
     <Compile Include="CommonResponse.cs" />
-    <Compile Include="GetTax.cs" />
+    <Compile Include="EstimateTaxTest.cs" />
+    <Compile Include="TaxSvc.cs" />
+    <Compile Include="GetTaxTest.cs" />
+    <Compile Include="PingTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidateAddress.cs" />
+    <Compile Include="ValidateAddressTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

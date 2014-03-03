@@ -32,6 +32,7 @@ namespace AvaTaxCalcREST
         public decimal Discount { get; set; }
         public string BusinessIdentificationNo { get; set; }
         public TaxOverrideDef TaxOverride { get; set; }
+        public string CurrencyCode { get; set; }
         //Optional
         public string PurchaseOrderNo { get; set; }
         public string PaymentDate { get; set; }
@@ -51,6 +52,7 @@ namespace AvaTaxCalcREST
         public decimal Amount{get; set;} //Required
         public string TaxCode { get; set; } //Best practice
         public string CustomerUsageType { get; set; }
+        public TaxOverrideDef TaxOverride { get; set; }
         public string Description { get; set; } //Best Practice
         public bool Discounted { get; set; }
         public bool TaxIncluded { get; set; }
@@ -160,15 +162,22 @@ namespace AvaTaxCalcREST
         Q,// "Commercial Fishery",
         R// "Non-resident"
     }
-    public class GetTax
+    public class TaxSvc
     {
-        //This actually calls the service to perform the tax calculation, and returns the calculation result.
-        public static GetTaxResult Get(GetTaxRequest req, string acctNum, string licKey, string companyCode, string webAddr)
+        public static string accountNumber;
+        public static string licenseKey;
+        public static string serviceURL;
+
+        public TaxSvc(string acct, string license, string url)
         {
+            accountNumber = acct;
+            licenseKey = license;
+            serviceURL = url.TrimEnd('/') + "/1.0/";
+        }
 
-            //Company Code is ususally maintiained with the account credentials, so it's passed in to this function even though it's included in the body of the GetTaxRequest.
-            req.CompanyCode = companyCode;
-
+        //This actually calls the service to perform the tax calculation, and returns the calculation result.
+        public static GetTaxResult GetTax(GetTaxRequest req)
+        {
 
             //Convert the request to XML
             XmlSerializerNamespaces namesp = new XmlSerializerNamespaces();
@@ -183,9 +192,9 @@ namespace AvaTaxCalcREST
             //doc.Save(@"get_tax_request.xml");
 
             //Call the service
-            Uri address = new Uri(webAddr + "tax/get");
+            Uri address = new Uri(serviceURL + "tax/get");
             HttpWebRequest request = WebRequest.Create(address) as HttpWebRequest;
-            request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(acctNum + ":" + licKey)));
+            request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(accountNumber + ":" + licenseKey)));
             request.Method = "POST";
             request.ContentType = "text/xml";
             request.ContentLength = sb.Length;
@@ -204,7 +213,9 @@ namespace AvaTaxCalcREST
                 result = (GetTaxResult)r.Deserialize(((HttpWebResponse)ex.Response).GetResponseStream());
             }
             return result;
-        }       
+        }
+        //public static GeoTaxResult EstimateTax(decimal latitude, decimal longitude, decimal saleAmount)
+        //{ }
     }
 }
 
