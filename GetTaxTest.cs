@@ -9,8 +9,8 @@ namespace AvaTaxCalcREST
     {
         public static void Test()
         {
-            string accountNumber = "account.admin.1100014690";//"1234567890";
-            string licenseKey = "avalara";//"A1B2C3D4E5F6G7H8";
+            string accountNumber = "1234567890";
+            string licenseKey = "A1B2C3D4E5F6G7H8";
             string serviceURL = "https://development.avalara.net";
 
             GetTaxRequest getTaxRequest = new GetTaxRequest();
