@@ -7,16 +7,19 @@
     {
         public static void Test()
         {
+            //Header Level Elements
+            //Required Header Level Elements
             string accountNumber = "1234567890";
             string licenseKey = "A1B2C3D4E5F6G7H8";
             string serviceURL = "https://development.avalara.net";
+
+            TaxSvc taxSvc = new TaxSvc(accountNumber, licenseKey, serviceURL);
 
             // Required Request Parameters
             decimal latitude = (decimal)47.627935;
             decimal longitude = (decimal)-122.51702;
             decimal saleAmount = (decimal)10;
 
-            TaxSvc taxSvc = new TaxSvc(accountNumber, licenseKey, serviceURL);
             GeoTaxResult geoTaxResult = taxSvc.EstimateTax(latitude, longitude, saleAmount);
 
             // Print results

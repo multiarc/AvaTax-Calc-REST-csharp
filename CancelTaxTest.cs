@@ -6,9 +6,13 @@
     {
         public static void Test()
         {
+            //Header Level Elements
+            //Required Header Level Elements
             string accountNumber = "1234567890";
             string licenseKey = "A1B2C3D4E5F6G7H8";
             string serviceURL = "https://development.avalara.net";
+
+            TaxSvc taxSvc = new TaxSvc(accountNumber, licenseKey, serviceURL);
 
             CancelTaxRequest cancelTaxRequest = new CancelTaxRequest();
 
@@ -18,7 +22,6 @@
             cancelTaxRequest.DocCode = "INV001";
             cancelTaxRequest.CancelCode = CancelCode.DocVoided;
 
-            TaxSvc taxSvc = new TaxSvc(accountNumber, licenseKey, serviceURL);
             CancelTaxResult cancelTaxResult = taxSvc.CancelTax(cancelTaxRequest);
 
             // Print results

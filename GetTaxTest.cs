@@ -7,9 +7,13 @@
     {
         public static void Test()
         {
+            //Header Level Elements
+            //Required Header Level Elements
             string accountNumber = "1234567890";
             string licenseKey = "A1B2C3D4E5F6G7H8";
             string serviceURL = "https://development.avalara.net";
+
+            TaxSvc taxSvc = new TaxSvc(accountNumber, licenseKey, serviceURL);
 
             GetTaxRequest getTaxRequest = new GetTaxRequest();
 
@@ -116,7 +120,6 @@
             Line[] lines = { line1, line2, line3 };
             getTaxRequest.Lines = lines;
 
-            TaxSvc taxSvc = new TaxSvc(accountNumber, licenseKey, serviceURL);
             GetTaxResult getTaxResult = taxSvc.GetTax(getTaxRequest);
             
             // Print results
@@ -133,7 +136,7 @@
                 Console.WriteLine("Document Code: " + getTaxResult.DocCode + " Total Tax: " + getTaxResult.TotalTax);
                 foreach (TaxLine taxLine in getTaxResult.TaxLines ?? Enumerable.Empty<TaxLine>())
                 {
-                    Console.WriteLine("    " + "Line Number: " + taxLine.LineNo + " Line Tax: " + getTaxResult.TotalTax.ToString());
+                    Console.WriteLine("    " + "Line Number: " + taxLine.LineNo + " Line Tax: " + taxLine.Tax.ToString());
                     foreach (TaxDetail taxDetail in taxLine.TaxDetails ?? Enumerable.Empty<TaxDetail>())
                     {
                         Console.WriteLine("        " + "Jurisdiction: " + taxDetail.JurisName + "Tax: " + taxDetail.Tax.ToString());

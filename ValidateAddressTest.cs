@@ -6,9 +6,13 @@
     {
         public static void Test()
         {
+            //Header Level Elements
+            //Required Header Level Elements
             string accountNumber = "1234567890";
             string licenseKey = "A1B2C3D4E5F6G7H8";
             string serviceURL = "https://development.avalara.net";
+
+            AddressSvc addressSvc = new AddressSvc(accountNumber, licenseKey, serviceURL);
 
             Address address = new Address();
 
@@ -23,7 +27,6 @@
             address.Country = "US";
             address.PostalCode = "60602";
 
-            AddressSvc addressSvc = new AddressSvc(accountNumber, licenseKey, serviceURL);
             ValidateResult validateResult = addressSvc.Validate(address);
 
             // Print results
