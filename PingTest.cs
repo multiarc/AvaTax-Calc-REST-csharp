@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AvaTaxCalcREST
+﻿namespace AvaTaxCalcREST
 {
-    class PingTest
+    using System;
+
+    public class PingTest
     {
         public static void Test()
         {

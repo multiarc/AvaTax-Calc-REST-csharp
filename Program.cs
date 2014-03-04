@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml;
-using System.Xml.Serialization;
-using System.IO;
-using System.Web;
-using System.Net;
-
-namespace AvaTaxCalcREST
+﻿namespace AvaTaxCalcREST
 {
-    class Program
+    using System;
+
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
             try
             {
-                //Each test is managed in its own class 
-                //Make sure you enter your valid credentials in that test class.
+                // Each test is managed in its own class 
+                // Make sure you enter your valid credentials in that test class.
                 GetTaxTest.Test();
                 CancelTaxTest.Test();
                 EstimateTaxTest.Test();
@@ -25,7 +17,9 @@ namespace AvaTaxCalcREST
                 ValidateAddressTest.Test();
             }
             catch (Exception ex)
-            { Console.WriteLine("An Exception Occured: " + ex.Message); }
+            { 
+                Console.WriteLine("An Exception Occured: " + ex.Message); 
+            }
             finally
             {
                 Console.WriteLine("Done");

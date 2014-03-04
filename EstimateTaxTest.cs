@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AvaTaxCalcREST
+﻿namespace AvaTaxCalcREST
 {
-    class EstimateTaxTest
+    using System;
+    using System.Linq;
+
+    public class EstimateTaxTest
     {
         public static void Test()
         {
@@ -13,15 +11,15 @@ namespace AvaTaxCalcREST
             string licenseKey = "A1B2C3D4E5F6G7H8";
             string serviceURL = "https://development.avalara.net";
 
-            //Required Request Parameters
-            decimal latitude = (decimal) 47.627935;
+            // Required Request Parameters
+            decimal latitude = (decimal)47.627935;
             decimal longitude = (decimal)-122.51702;
             decimal saleAmount = (decimal)10;
 
             TaxSvc taxSvc = new TaxSvc(accountNumber, licenseKey, serviceURL);
             GeoTaxResult geoTaxResult = taxSvc.EstimateTax(latitude, longitude, saleAmount);
 
-            //Print results
+            // Print results
             Console.WriteLine("EstimateTaxTest Result: " + geoTaxResult.ResultCode.ToString());
             if (!geoTaxResult.ResultCode.Equals(SeverityLevel.Success))
             {
@@ -37,11 +35,8 @@ namespace AvaTaxCalcREST
                 foreach (TaxDetail taxDetail in geoTaxResult.TaxDetails ?? Enumerable.Empty<TaxDetail>())
                 {
                     Console.WriteLine("    " + "Jurisdiction: " + taxDetail.JurisName + " Tax: " + taxDetail.Tax.ToString());
-                }
-                
+                }              
             }
-            
-
         }
     }
 }

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AvaTaxCalcREST
+﻿namespace AvaTaxCalcREST
 {
-    class CancelTaxTest
+    using System;
+
+    public class CancelTaxTest
     {
         public static void Test()
         {
@@ -15,17 +12,16 @@ namespace AvaTaxCalcREST
 
             CancelTaxRequest cancelTaxRequest = new CancelTaxRequest();
 
-            //Required Request Parameters
+            // Required Request Parameters
             cancelTaxRequest.CompanyCode = "APITrialCompany";
-            cancelTaxRequest.DocType =  DocType.SalesInvoice;
+            cancelTaxRequest.DocType = DocType.SalesInvoice;
             cancelTaxRequest.DocCode = "INV001";
             cancelTaxRequest.CancelCode = CancelCode.DocVoided;
-
 
             TaxSvc taxSvc = new TaxSvc(accountNumber, licenseKey, serviceURL);
             CancelTaxResult cancelTaxResult = taxSvc.CancelTax(cancelTaxRequest);
 
-            //Print results
+            // Print results
             Console.WriteLine("CancelTaxTest Result: " + cancelTaxResult.ResultCode.ToString());
             if (!cancelTaxResult.ResultCode.Equals(SeverityLevel.Success))
             {
