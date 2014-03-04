@@ -22,7 +22,6 @@ Contents:
 <tr><td>CommonResponse.cs</td><td>Contains classes necessary for and common to both address and tax methods.</td></tr>
 <tr><td>TaxSvc.cs</td><td>Contains the necessary classes for CancelTax, EstimateTax, GetTax, and Ping.</td></tr> 
 <th colspan="2" align=left>Other Files</th>
-<tr><td>Properties/AssemblyInfo.cs</td><td>-</td></tr>
 <tr><td>.gitattributes</td><td>-</td></tr>
 <tr><td>.gitignore</td><td>-</td></tr>
 <tr><td>AvaTaxCalcREST.csproj</td><td>-</td></tr>
