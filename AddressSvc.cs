@@ -49,25 +49,35 @@ namespace AvaTaxCalcREST
         R,//Rural route address
         S//Street or residential address
     };
-    public class ValidateAddress
+    public class AddressSvc
     {
-        public static ValidateResult Validate(Address addr, string AcctNum, string LicKey, string webaddr)
+        public static string accountNumber;
+        public static string licenseKey;
+        public static string serviceURL;
+
+        public AddressSvc(string AccountNumber, string LicenseKey, string ServiceURL)
+        {
+            accountNumber = AccountNumber;
+            licenseKey = LicenseKey;
+            serviceURL = ServiceURL.TrimEnd('/') + "/1.0/";
+        }
+        public ValidateResult Validate(Address address)
         {
             //Convert input address data to query string
             string querystring = "";
-            if (addr.Line1 != null) { querystring = querystring + "Line1=" + addr.Line1.Replace(" ", "+"); }
-            if (addr.Line2 != null) { querystring = querystring + "&Line2=" + addr.Line2.Replace(" ", "+"); }
-            if (addr.Line3 != null) { querystring = querystring + "&Line3=" + addr.Line3.Replace(" ", "+"); }
-            if (addr.City != null) { querystring = querystring + "&City=" + addr.City.Replace(" ", "+"); }
-            if (addr.Region != null) { querystring = querystring + "&Region=" + addr.Region.Replace(" ", "+"); }
-            if (addr.PostalCode != null) { querystring = querystring + "&PostalCode=" + addr.PostalCode.Replace(" ", "+"); }
-            if (addr.Country != null) { querystring = querystring + "&Country=" + addr.Country.Replace(" ", "+"); }
+            if (address.Line1 != null) { querystring = querystring + "Line1=" + address.Line1.Replace(" ", "+"); }
+            if (address.Line2 != null) { querystring = querystring + "&Line2=" + address.Line2.Replace(" ", "+"); }
+            if (address.Line3 != null) { querystring = querystring + "&Line3=" + address.Line3.Replace(" ", "+"); }
+            if (address.City != null) { querystring = querystring + "&City=" + address.City.Replace(" ", "+"); }
+            if (address.Region != null) { querystring = querystring + "&Region=" + address.Region.Replace(" ", "+"); }
+            if (address.PostalCode != null) { querystring = querystring + "&PostalCode=" + address.PostalCode.Replace(" ", "+"); }
+            if (address.Country != null) { querystring = querystring + "&Country=" + address.Country.Replace(" ", "+"); }
 
 
             //Call the service
-            Uri address = new Uri(webaddr + "address/validate.xml?" + querystring);
-            HttpWebRequest request = WebRequest.Create(address) as HttpWebRequest;
-            request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(AcctNum + ":" + LicKey)));
+            Uri webAddress = new Uri(serviceURL + "address/validate.xml?" + querystring);
+            HttpWebRequest request = WebRequest.Create(webAddress) as HttpWebRequest;
+            request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(accountNumber + ":" + licenseKey)));
             request.Method = "GET";
 
             ValidateResult result = new ValidateResult();
@@ -76,7 +86,7 @@ namespace AvaTaxCalcREST
                 WebResponse response = request.GetResponse();
                 XmlSerializer r = new XmlSerializer(result.GetType());
                 result = (ValidateResult)r.Deserialize(response.GetResponseStream());
-                addr = result.Address; //If the address was validated, take the validated address.
+                address = result.Address; //If the address was validated, take the validated address.
             }
             catch (WebException ex)
             {

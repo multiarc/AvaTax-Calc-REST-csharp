@@ -119,7 +119,7 @@ namespace AvaTaxCalcREST
             getTaxRequest.Lines = lines;
 
             TaxSvc taxSvc = new TaxSvc(accountNumber, licenseKey, serviceURL);
-            GetTaxResult getTaxResult = TaxSvc.GetTax(getTaxRequest);
+            GetTaxResult getTaxResult = taxSvc.GetTax(getTaxRequest);
             
             //Print results
             Console.WriteLine("GetTaxTest Result: " + getTaxResult.ResultCode.ToString());

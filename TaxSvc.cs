@@ -162,21 +162,52 @@ namespace AvaTaxCalcREST
         Q,// "Commercial Fishery",
         R// "Non-resident"
     }
+    //These classes are for tax/cancel (verb POST)
+    [Serializable]
+    public class CancelTaxRequest
+    {
+        //Required for CancelTax operation
+        public CancelCode CancelCode { get; set; }
+        public DocType DocType { get; set; } //Note that the only *meaningful* values for this property here are SalesInvoice, ReturnInvoice, PurchaseInvoice.
+        //The document needs to be identified by either DocCode/CompanyCode (recommended) OR DocId (not recommended).
+        public string CompanyCode { get; set; }
+        public string DocCode { get; set; }
+
+    }
+    [Serializable]
+    public class CancelTaxResponse
+    {
+        public CancelTaxResult CancelTaxResult { get; set; }
+        public SeverityLevel ResultCode { get; set; }
+        public Message[] Messages { get; set; }
+    }
+
+    [Serializable]
+    public class CancelTaxResult
+    {
+        public SeverityLevel ResultCode { get; set; }
+        public String TransactionId { get; set; }
+        public String DocId { get; set; }
+        public Message[] Messages { get; set; }
+
+    }
+    public enum CancelCode { Unspecified, PostFailed, DocDeleted, DocVoided, AdjustmentCancelled };
+
     public class TaxSvc
     {
         public static string accountNumber;
         public static string licenseKey;
         public static string serviceURL;
 
-        public TaxSvc(string acct, string license, string url)
+        public TaxSvc(string AccountNumber, string LicenseKey, string ServiceURL)
         {
-            accountNumber = acct;
-            licenseKey = license;
-            serviceURL = url.TrimEnd('/') + "/1.0/";
+            accountNumber = AccountNumber;
+            licenseKey = LicenseKey;
+            serviceURL = ServiceURL.TrimEnd('/') + "/1.0/";
         }
 
         //This actually calls the service to perform the tax calculation, and returns the calculation result.
-        public static GetTaxResult GetTax(GetTaxRequest req)
+        public GetTaxResult GetTax(GetTaxRequest req)
         {
 
             //Convert the request to XML
@@ -214,8 +245,100 @@ namespace AvaTaxCalcREST
             }
             return result;
         }
-        //public static GeoTaxResult EstimateTax(decimal latitude, decimal longitude, decimal saleAmount)
-        //{ }
+        public GeoTaxResult EstimateTax(decimal latitude, decimal longitude, decimal saleAmount)
+        {
+            //Call the service
+            Uri address = new Uri(serviceURL + "tax/"+latitude.ToString() + "," + longitude.ToString()+"/get.xml?saleamount=" + saleAmount);
+            HttpWebRequest request = WebRequest.Create(address) as HttpWebRequest;
+            request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(accountNumber + ":" + licenseKey)));
+            request.Method = "GET";
+
+            GeoTaxResult result = new GeoTaxResult();
+            try
+            {
+                WebResponse response = request.GetResponse();
+                XmlSerializer r = new XmlSerializer(result.GetType());
+                result = (GeoTaxResult)r.Deserialize(response.GetResponseStream());
+            }
+            catch (WebException ex)
+            {
+                Stream responseStream = ((HttpWebResponse)ex.Response).GetResponseStream();
+                StreamReader reader = new StreamReader(responseStream);
+                String responseString = reader.ReadToEnd();
+                if (responseString.StartsWith("{") || responseString.StartsWith("[")) //The service returns some error messages in JSON for authentication/unhandled errors.
+                {
+                    result = new GeoTaxResult();
+                    result.ResultCode = SeverityLevel.Error;
+                    Message msg = new Message();
+                    msg.Severity = result.ResultCode;
+                    msg.Summary = "The request was unable to be successfully serviced, please try again or contact Customer Service.";
+                    msg.Source = "Avalara.Web.REST";
+                    if (!((HttpWebResponse)ex.Response).StatusCode.Equals(HttpStatusCode.InternalServerError))
+                    {
+                        msg.Summary = "The user or account could not be authenticated.";
+                        msg.Source = "Avalara.Web.Authorization";
+                    }
+                    result.Messages = new Message[1] { msg };
+                }
+                else
+                {
+                    XmlSerializer r = new XmlSerializer(result.GetType());
+                    byte[] temp = Encoding.ASCII.GetBytes(responseString);
+                    MemoryStream stream = new MemoryStream(temp);
+                    result = (GeoTaxResult)r.Deserialize(stream); //Inelegant, but the deserializer only takes streams, and we already read ours out.
+                }
+            }
+            return result;
+        
+        }
+        public GeoTaxResult Ping()
+        {
+            return EstimateTax((decimal)47.627935, (decimal)-122.51702, (decimal)10);
+        }
+        //This calls CancelTax to void a transaction specified in taxreq
+        public CancelTaxResult CancelTax(CancelTaxRequest cancelTaxRequest)
+        {
+            //Convert the request to XML
+            XmlSerializerNamespaces namesp = new XmlSerializerNamespaces();
+            namesp.Add("", "");
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.OmitXmlDeclaration = true;
+            XmlSerializer x = new XmlSerializer(cancelTaxRequest.GetType());
+            StringBuilder sb = new StringBuilder();
+            x.Serialize(XmlTextWriter.Create(sb, settings), cancelTaxRequest, namesp);
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(sb.ToString());
+            //doc.Save(@"cancel_tax_request.xml");
+
+            //Call the service
+            Uri address = new Uri(serviceURL + "tax/cancel");
+            HttpWebRequest request = WebRequest.Create(address) as HttpWebRequest;
+            request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(accountNumber + ":" + licenseKey)));
+            request.Method = "POST";
+            request.ContentType = "text/xml";
+            request.ContentLength = sb.Length;
+            Stream newStream = request.GetRequestStream();
+            newStream.Write(ASCIIEncoding.ASCII.GetBytes(sb.ToString()), 0, sb.Length);
+            CancelTaxResponse cancelResponse = new CancelTaxResponse();
+            try
+            {
+                WebResponse response = request.GetResponse();
+                XmlSerializer r = new XmlSerializer(cancelResponse.GetType());
+                cancelResponse = (CancelTaxResponse)r.Deserialize(response.GetResponseStream());
+            }
+            catch (WebException ex)
+            {
+                XmlSerializer r = new XmlSerializer(cancelResponse.GetType());
+                cancelResponse = (CancelTaxResponse)r.Deserialize(((HttpWebResponse)ex.Response).GetResponseStream());
+                if (cancelResponse.ResultCode.Equals(SeverityLevel.Error)) //If the error is returned at the cancelResponse level, translate it to the cancelResult.
+                {
+                    cancelResponse.CancelTaxResult = new CancelTaxResult();
+                    cancelResponse.CancelTaxResult.ResultCode = cancelResponse.ResultCode;
+                    cancelResponse.CancelTaxResult.Messages = cancelResponse.Messages;
+                }
+            }
+            return cancelResponse.CancelTaxResult;
+        }
     }
 }
 
