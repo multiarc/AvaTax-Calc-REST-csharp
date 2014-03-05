@@ -18,7 +18,7 @@ Contents:
 <tr><td>Program.cs</td><td>Provides and entry point to call the actual samples.</td></tr>
 <tr><td>ValidateAddressTest.cs</td><td>Demonstrates the <a href="http://developer.avalara.com/api-docs/rest/address-validation">ValidateAddress</a> method to <a href="http://developer.avalara.com/api-docs/api-reference/address-validation">normalize an address</a>.</td></tr>
 <th colspan="2" align=left>Other Files</th>
-<tr><td>AvaTaxSvc/</td><td>Contains the core classes that make the service calls.</td></tr>
+<tr><td>AvaTaxClasses/</td><td>Contains the core classes that make the service calls.</td></tr>
 <tr><td>.gitattributes</td><td>-</td></tr>
 <tr><td>.gitignore</td><td>-</td></tr>
 <tr><td>AvaTaxCalcREST.csproj</td><td>-</td></tr>
