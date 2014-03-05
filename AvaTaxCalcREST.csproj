@@ -43,28 +43,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AvaTaxSvc\Address.cs" />
-    <Compile Include="AvaTaxSvc\CancelTaxRequest.cs" />
-    <Compile Include="AvaTaxSvc\CancelTaxResponse.cs" />
-    <Compile Include="AvaTaxSvc\CancelTaxResult.cs" />
+    <Compile Include="AvaTaxClasses\Address.cs" />
+    <Compile Include="AvaTaxClasses\CancelTaxRequest.cs" />
+    <Compile Include="AvaTaxClasses\CancelTaxResponse.cs" />
+    <Compile Include="AvaTaxClasses\CancelTaxResult.cs" />
     <Compile Include="CancelTaxTest.cs" />
-    <Compile Include="AvaTaxSvc\CommonResponse.cs" />
+    <Compile Include="AvaTaxClasses\CommonResponse.cs" />
     <Compile Include="EstimateTaxTest.cs" />
-    <Compile Include="AvaTaxSvc\GeoTaxResult.cs" />
-    <Compile Include="AvaTaxSvc\GetTaxRequest.cs" />
-    <Compile Include="AvaTaxSvc\GetTaxResult.cs" />
-    <Compile Include="AvaTaxSvc\Line.cs" />
-    <Compile Include="AvaTaxSvc\TaxAddress.cs" />
+    <Compile Include="AvaTaxClasses\GeoTaxResult.cs" />
+    <Compile Include="AvaTaxClasses\GetTaxRequest.cs" />
+    <Compile Include="AvaTaxClasses\GetTaxResult.cs" />
+    <Compile Include="AvaTaxClasses\Line.cs" />
+    <Compile Include="AvaTaxClasses\TaxAddress.cs" />
     <Compile Include="TaxDetail.cs" />
-    <Compile Include="AvaTaxSvc\TaxLine.cs" />
-    <Compile Include="AvaTaxSvc\TaxOverrideDef.cs" />
-    <Compile Include="AvaTaxSvc\TaxSvc.cs" />
+    <Compile Include="AvaTaxClasses\TaxLine.cs" />
+    <Compile Include="AvaTaxClasses\TaxOverrideDef.cs" />
+    <Compile Include="AvaTaxClasses\TaxSvc.cs" />
     <Compile Include="GetTaxTest.cs" />
     <Compile Include="PingTest.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="AvaTaxSvc\AddressSvc.cs" />
+    <Compile Include="AvaTaxClasses\AddressSvc.cs" />
     <Compile Include="ValidateAddressTest.cs" />
-    <Compile Include="AvaTaxSvc\ValidateResult.cs" />
+    <Compile Include="AvaTaxClasses\ValidateResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
