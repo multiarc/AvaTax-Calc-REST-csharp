@@ -43,15 +43,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AvaTaxSvc\Address.cs" />
+    <Compile Include="AvaTaxSvc\CancelTaxRequest.cs" />
+    <Compile Include="AvaTaxSvc\CancelTaxResponse.cs" />
+    <Compile Include="AvaTaxSvc\CancelTaxResult.cs" />
     <Compile Include="CancelTaxTest.cs" />
-    <Compile Include="CommonResponse.cs" />
+    <Compile Include="AvaTaxSvc\CommonResponse.cs" />
     <Compile Include="EstimateTaxTest.cs" />
-    <Compile Include="TaxSvc.cs" />
+    <Compile Include="AvaTaxSvc\GeoTaxResult.cs" />
+    <Compile Include="AvaTaxSvc\GetTaxRequest.cs" />
+    <Compile Include="AvaTaxSvc\GetTaxResult.cs" />
+    <Compile Include="AvaTaxSvc\Line.cs" />
+    <Compile Include="AvaTaxSvc\TaxAddress.cs" />
+    <Compile Include="TaxDetail.cs" />
+    <Compile Include="AvaTaxSvc\TaxLine.cs" />
+    <Compile Include="AvaTaxSvc\TaxOverrideDef.cs" />
+    <Compile Include="AvaTaxSvc\TaxSvc.cs" />
     <Compile Include="GetTaxTest.cs" />
     <Compile Include="PingTest.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="AddressSvc.cs" />
+    <Compile Include="AvaTaxSvc\AddressSvc.cs" />
     <Compile Include="ValidateAddressTest.cs" />
+    <Compile Include="AvaTaxSvc\ValidateResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

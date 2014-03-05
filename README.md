@@ -17,11 +17,8 @@ Contents:
 <tr><td>PingTest.cs</td><td>Uses a hardcoded EstimateTax call to test connectivity and credential information.</td></tr>
 <tr><td>Program.cs</td><td>Provides and entry point to call the actual samples.</td></tr>
 <tr><td>ValidateAddressTest.cs</td><td>Demonstrates the <a href="http://developer.avalara.com/api-docs/rest/address-validation">ValidateAddress</a> method to <a href="http://developer.avalara.com/api-docs/api-reference/address-validation">normalize an address</a>.</td></tr>
-<th colspan="2" align=left>Core Classes</th>
-<tr><td>AddressSvc.cs</td><td>Contains the necessary classes for ValidateAddress.</td></tr>
-<tr><td>CommonResponse.cs</td><td>Contains classes necessary for and common to both address and tax methods.</td></tr>
-<tr><td>TaxSvc.cs</td><td>Contains the necessary classes for CancelTax, EstimateTax, GetTax, and Ping.</td></tr> 
 <th colspan="2" align=left>Other Files</th>
+<tr><td>AvaTaxSvc/</td><td>Contains the core classes that make the service calls.</td></tr>
 <tr><td>.gitattributes</td><td>-</td></tr>
 <tr><td>.gitignore</td><td>-</td></tr>
 <tr><td>AvaTaxCalcREST.csproj</td><td>-</td></tr>
