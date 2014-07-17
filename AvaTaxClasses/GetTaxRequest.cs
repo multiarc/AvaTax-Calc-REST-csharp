@@ -9,7 +9,9 @@
         ReturnOrder,
         ReturnInvoice,
         PurchaseOrder,
-        PurchaseInvoice
+        PurchaseInvoice,
+        ReverseChargeOrder,
+        ReverseChargeInvoice
     }
 
     public enum DetailLevel
