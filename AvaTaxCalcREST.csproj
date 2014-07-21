@@ -55,7 +55,7 @@
     <Compile Include="AvaTaxClasses\GetTaxResult.cs" />
     <Compile Include="AvaTaxClasses\Line.cs" />
     <Compile Include="AvaTaxClasses\TaxAddress.cs" />
-    <Compile Include="TaxDetail.cs" />
+    <Compile Include="AvaTaxClasses\TaxDetail.cs" />
     <Compile Include="AvaTaxClasses\TaxLine.cs" />
     <Compile Include="AvaTaxClasses\TaxOverrideDef.cs" />
     <Compile Include="AvaTaxClasses\TaxSvc.cs" />
