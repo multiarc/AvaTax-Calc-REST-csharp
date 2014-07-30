@@ -1,6 +1,7 @@
 ﻿namespace AvaTaxCalcREST
 {
     using System;
+    using System.Configuration;
 
     public class CancelTaxTest
     {
@@ -8,9 +9,9 @@
         {
             // Header Level Elements
             // Required Header Level Elements
-            string accountNumber = "1234567890";
-            string licenseKey = "A1B2C3D4E5F6G7H8";
-            string serviceURL = "https://development.avalara.net";
+            string accountNumber = ConfigurationManager.AppSettings["AvaTax:AccountNumber"];
+            string licenseKey = ConfigurationManager.AppSettings["AvaTax:LicenseKey"];
+            string serviceURL = ConfigurationManager.AppSettings["AvaTax:ServiceUrl"];
 
             TaxSvc taxSvc = new TaxSvc(accountNumber, licenseKey, serviceURL);
 
