@@ -5,7 +5,17 @@ This is a C# sample demonstrating the [AvaTax REST API](http://developer.avalara
  [tax/get POST](http://developer.avalara.com/api-docs/rest/tax/post/), [tax/get GET](http://developer.avalara.com/api-docs/rest/tax/get), [tax/cancel POST](http://developer.avalara.com/api-docs/rest/tax/cancel), and [address/validate GET](http://developer.avalara.com/api-docs/rest/address-validation).
  
  For more information on the use of these methods and the AvaTax product, please visit our [developer site](http://developer.avalara.com/) or [homepage](http://www.avalara.com/)
- 
+
+Dependencies:
+-----------
+- .NET 4.0 or later
+
+
+Requirements:
+----------
+- Authentication requires an valid **Account Number** and **License Key**, which should be entered in the application configuration (app.config) file.
+- If you do not have an AvaTax account, a free trial account can be acquired through our [developer site](http://developer.avalara.com/api-get-started)
+
 Contents:
 ----------
  
@@ -21,19 +31,9 @@ Contents:
 <tr><td>AvaTaxClasses/</td><td>Contains the core classes that make the service calls.</td></tr>
 <tr><td>.gitattributes</td><td>-</td></tr>
 <tr><td>.gitignore</td><td>-</td></tr>
+<tr><td>app.config</td><td>Contains AvaTax credentials used to run individual tests.</td></tr>
 <tr><td>AvaTaxCalcREST.csproj</td><td>-</td></tr>
 <tr><td>AvaTaxCalcREST.sln</td><td>-</td></tr>
 <tr><td>LICENSE.md</td><td>-</td></tr>
 <tr><td>README.md</td><td>-</td></tr>
-</table>
-
-Dependencies:
------------
-- .NET 4.0 or later
-
-
-Requirements:
-----------
-- Authentication requires an valid **Account Number** and **License Key**, which should be entered in the test file (e.g. GetTaxTest.cs) you would like to run.
-- If you do not have an AvaTax account, a free trial account can be acquired through our [developer site](http://developer.avalara.com/api-get-started)
- 
+</table> 
