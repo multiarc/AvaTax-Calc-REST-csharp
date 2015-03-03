@@ -34,6 +34,7 @@
             // Situational Request Parameters
             // getTaxRequest.CustomerUsageType = "G";
             // getTaxRequest.ExemptionNo = "12345";
+            // getTaxRequest.BusinessIdentificationNo = "234243";
             // getTaxRequest.Discount = 50;
             // getTaxRequest.TaxOverride = new TaxOverrideDef();
             // getTaxRequest.TaxOverride.TaxOverrideType = "TaxDate";
@@ -89,6 +90,7 @@
             // line1.CustomerUsageType = "L";
             // line1.Discounted = true;
             // line1.TaxIncluded = true;
+            // line1.BusinessIdentificationNo = "234243";
             // line1.TaxOverride = new TaxOverrideDef();
             // line1.TaxOverride.TaxOverrideType = "TaxDate";
             // line1.TaxOverride.Reason = "Adjustment for return";

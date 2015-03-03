@@ -28,6 +28,8 @@
         public bool Discounted { get; set; }
 
         public bool TaxIncluded { get; set; }
+        
+        public string BusinessIdentificationNo { get; set; }
 
         public string Ref1 { get; set; }
 
