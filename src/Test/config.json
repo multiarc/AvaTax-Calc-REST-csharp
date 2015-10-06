@@ -1,0 +1,9 @@
+﻿{
+  "app": {
+    "avatax": {
+      "accountNumber": "1234567890",
+      "licenseKey": "A1B2C3D4E5F6G7H8",
+      "serviceUrl": "https://development.avalara.net"
+    }
+  }
+}

@@ -1,7 +1,7 @@
-﻿namespace AvaTaxCalcREST
-{
-    using System;
+﻿using System;
 
+namespace Avalara.Avatax.Rest.Data
+{
     public enum AddressType
     {
         F, // Firm or company address
@@ -12,7 +12,9 @@
         S // Street or residential address
     }
 
+#if !DNXCORE50
     [Serializable]
+#endif
     public class Address
     {
         // Address can be determined for tax calculation by Line1, City, Region, PostalCode, Country OR Latitude/Longitude OR TaxRegionId

@@ -1,7 +1,7 @@
-﻿namespace AvaTaxCalcREST
-{
-    using System;
+﻿using System;
 
+namespace Avalara.Avatax.Rest.Data
+{
     public enum CancelCode
     {
         Unspecified,
@@ -11,7 +11,9 @@
         AdjustmentCancelled
     }
 
+#if !DNXCORE50
     [Serializable]
+#endif
     public class CancelTaxRequest
     {
         // Required for CancelTax operation

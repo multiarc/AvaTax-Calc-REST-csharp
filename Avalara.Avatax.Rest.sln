@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D0207918-D617-40EB-BF84-0E5D7AF67A69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{19613780-9BCD-481A-AC0B-8DD48C1A1177}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		NuGet.Config = NuGet.Config
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Avalara.Avatax.Rest", "src\Avalara.Avatax.Rest\Avalara.Avatax.Rest.xproj", "{553CADEB-6C7A-4DC8-9F27-48DFBC4CC972}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Test", "src\Test\Test.xproj", "{618C0771-6E77-4CDB-9263-B59F7F7FD761}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{553CADEB-6C7A-4DC8-9F27-48DFBC4CC972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{553CADEB-6C7A-4DC8-9F27-48DFBC4CC972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{553CADEB-6C7A-4DC8-9F27-48DFBC4CC972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{553CADEB-6C7A-4DC8-9F27-48DFBC4CC972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{618C0771-6E77-4CDB-9263-B59F7F7FD761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{618C0771-6E77-4CDB-9263-B59F7F7FD761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{618C0771-6E77-4CDB-9263-B59F7F7FD761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{618C0771-6E77-4CDB-9263-B59F7F7FD761}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{553CADEB-6C7A-4DC8-9F27-48DFBC4CC972} = {D0207918-D617-40EB-BF84-0E5D7AF67A69}
+		{618C0771-6E77-4CDB-9263-B59F7F7FD761} = {D0207918-D617-40EB-BF84-0E5D7AF67A69}
+	EndGlobalSection
+EndGlobal

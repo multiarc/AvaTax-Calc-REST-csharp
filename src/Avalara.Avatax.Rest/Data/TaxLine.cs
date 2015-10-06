@@ -1,8 +1,10 @@
-﻿namespace AvaTaxCalcREST
-{
-    using System;
+﻿using System;
 
+namespace Avalara.Avatax.Rest.Data
+{
+#if !DNXCORE50
     [Serializable]
+#endif
     public class TaxLine // Result object
     {
         public string LineNo { get; set; }

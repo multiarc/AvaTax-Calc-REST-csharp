@@ -1,8 +1,10 @@
-﻿namespace AvaTaxCalcREST
-{
-    using System;
+﻿using System;
 
+namespace Avalara.Avatax.Rest.Data
+{
+#if !DNXCORE50
     [Serializable]
+#endif
     public class GetTaxResult // Result of tax/get verb POST
     {
         public string DocCode { get; set; }

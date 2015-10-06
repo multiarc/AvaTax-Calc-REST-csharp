@@ -1,7 +1,7 @@
-﻿namespace AvaTaxCalcREST
-{
-    using System;
+﻿using System;
 
+namespace Avalara.Avatax.Rest.Data
+{
     public enum SeverityLevel
     {
         Success,
@@ -9,8 +9,9 @@
         Error,
         Exception
     }
-
+#if !DNXCORE50
     [Serializable]
+#endif
     public class Message // Result object for Common Response Format
     {
         public string Summary { get; set; }

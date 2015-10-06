@@ -1,7 +1,7 @@
-﻿namespace AvaTaxCalcREST
-{
-    using System;
+﻿using System;
 
+namespace Avalara.Avatax.Rest.Data
+{
     public enum DocType
     {
         SalesOrder,
@@ -42,7 +42,9 @@
         R // "Non-resident"
     }
 
+#if !DNXCORE50
     [Serializable]
+#endif
     public class GetTaxRequest
     {
         // Required for tax calculation

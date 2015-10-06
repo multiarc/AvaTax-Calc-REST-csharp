@@ -1,25 +1,28 @@
-﻿namespace AvaTaxCalcREST
+﻿using System;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Avalara.Avatax.Rest.Data;
+using Avalara.Avatax.Rest.Utility;
+
+namespace Avalara.Avatax.Rest.Services
 {
-    using System;
-    using System.IO;
-    using System.Net;
-    using System.Text;
-    using System.Xml.Serialization;
-
-    public partial class AddressSvc
+    public class AddressService : IAddressService
     {
-        private static string accountNum;
-        private static string license;
-        private static string svcURL;
+        private static string _accountNumber;
+        private static string _license;
+        private static string _svcUrl;
 
-        public AddressSvc(string accountNumber, string licenseKey, string serviceURL)
+        public AddressService(string accountNumber, string licenseKey, string serviceUrl)
         {
-            accountNum = accountNumber;
-            license = licenseKey;
-            svcURL = serviceURL.TrimEnd('/') + "/1.0/";
+            _accountNumber = accountNumber;
+            _license = licenseKey;
+            _svcUrl = serviceUrl.TrimEnd('/') + "/1.0/";
         }
 
-        public ValidateResult Validate(Address address)
+        public async Task<ValidateResult> Validate(Address address)
         {
             // Convert input address data to query string
             string querystring = string.Empty;
@@ -32,15 +35,14 @@
             querystring += (address.Country == null) ? string.Empty : "&Country=" + address.Country.Replace(" ", "+");
 
             // Call the service
-            Uri webAddress = new Uri(svcURL + "address/validate.xml?" + querystring);
-            HttpWebRequest request = WebRequest.Create(webAddress) as HttpWebRequest;
-            request.Headers.Add(HttpRequestHeader.Authorization, "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(accountNum + ":" + license)));
+            Uri webAddress = new Uri(_svcUrl + "address/validate.xml?" + querystring);
+            var request = HttpHelper.CreateRequest(webAddress, _accountNumber, _license);
             request.Method = "GET";
 
             ValidateResult result = new ValidateResult();
             try
             {
-                WebResponse response = request.GetResponse();
+                WebResponse response = await request.GetResponseAsync();
                 XmlSerializer r = new XmlSerializer(result.GetType());
                 result = (ValidateResult)r.Deserialize(response.GetResponseStream());
                 address = result.Address; // If the address was validated, take the validated address.

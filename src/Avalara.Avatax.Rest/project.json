@@ -1,0 +1,35 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "Avalara.Avatax.Rest Class Library",
+  "authors": [ "avadev", "multiarc" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
+
+  "frameworks": {
+    "net45": {
+      "frameworkAssemblies": {
+        "System.Xml": "4.0.0.0"
+      }
+    },
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.Xml": "4.0.0.0"
+      }
+    },
+    "dnxcore50": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-*",
+        "System.Collections": "4.0.11-*",
+        "System.Linq": "4.0.1-*",
+        "System.Runtime": "4.0.21-*",
+        "System.Threading": "4.0.11-*",
+        "System.Xml.XmlSerializer": "4.0.11-*",
+        "System.Xml.ReaderWriter": "4.0.11-*",
+        "System.Xml.XmlDocument": "4.0.1-*",
+        "System.Net.Http": "4.0.1-*",
+        "System.Net.Requests": "4.0.11-*"
+      }
+    }
+  }
+}
